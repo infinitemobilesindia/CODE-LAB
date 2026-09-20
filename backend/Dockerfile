@@ -2,7 +2,6 @@ FROM node:22-bookworm
 
 WORKDIR /app
 
-# System tools and compilers
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
