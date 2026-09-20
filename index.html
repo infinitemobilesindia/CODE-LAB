@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeLab V1 - Mobile-First Coding Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <i class="fa-solid fa-code"></i>
+      <span>CodeLab</span>
+      <span class="version-tag">V1</span>
+    </div>
+    <div id="status-indicator">
+      <i class="fa-solid fa-server" style="color: var(--accent-green);"></i> Render Backend
+    </div>
+  </header>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast">Message</div>
+
+  <!-- Main View Container -->
+  <main>
+    
+    <!-- LEARN SECTION -->
+    <section id="sec-learn" class="section-view active">
+      <div class="hero">
+        <h1>Master Coding Anywhere</h1>
+        <p>Interactive lessons, code editing, and multi-language execution.</p>
+      </div>
+
+      <h3>Supported Languages</h3>
+      <div class="language-grid" id="language-grid"></div>
+    </section>
+
+    <!-- CODE SECTION -->
+    <section id="sec-code" class="section-view">
+      <div class="editor-toolbar">
+        <div class="toolbar-group">
+          <select id="lang-select" class="select-input">
+            <option value="auto">Auto-Detect Language</option>
+          </select>
+          <button class="btn btn-secondary btn-sm" id="btn-detect-help" title="Detect Language">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </button>
+        </div>
+        <div class="toolbar-group">
+          <button class="btn btn-secondary" id="btn-new"><i class="fa-solid fa-file"></i> New</button>
+          <button class="btn btn-secondary" id="btn-save"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+          <button class="btn btn-success" id="btn-run"><i class="fa-solid fa-play"></i> Run</button>
+        </div>
+      </div>
+
+      <!-- Editor Window -->
+      <div class="editor-container">
+        <div class="line-numbers" id="line-numbers"><span>1</span></div>
+        <textarea id="code-input" class="code-textarea" spellcheck="false" placeholder="Write code here..."></textarea>
+      </div>
+
+      <!-- Console / Output -->
+      <div class="terminal-container">
+        <div class="terminal-header">
+          <span>Console Output</span>
+          <span id="exec-status">Idle</span>
+        </div>
+        <div class="terminal-output" id="terminal-output">Ready to execute...</div>
+      </div>
+
+      <!-- Error Card -->
+      <div class="error-card" id="error-card">
+        <div class="error-title">
+          <i class="fa-solid fa-triangle-exclamation"></i> Error Detected
+        </div>
+        <div id="error-text"></div>
+        <button class="btn btn-sm" id="btn-ask-ai">
+          <i class="fa-solid fa-robot"></i> Ask AI Tutor to Explain
+        </button>
+      </div>
+
+      <!-- AI Tutor Panel -->
+      <div class="ai-tutor-panel" id="ai-tutor-panel">
+        <div class="ai-header">
+          <i class="fa-solid fa-graduation-cap"></i> AI Tutor Breakdown
+        </div>
+        <div class="ai-content" id="ai-content"></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="sec-projects" class="section-view">
+      <h3>Saved Projects</h3>
+      <input type="text" id="project-search" class="search-bar" placeholder="Search projects by name or language...">
+      <div class="project-list" id="project-list"></div>
+    </section>
+
+    <!-- SETTINGS SECTION -->
+    <section id="sec-settings" class="section-view">
+      <h3>Platform Settings</h3>
+      <div class="card">
+        <div class="setting-group">
+          <div>
+            <strong>Backend Execution Server</strong>
+            <p>Secure sandbox endpoint (Render)</p>
+          </div>
+          <input type="text" id="setting-backend-url" class="select-input" value="https://api.codelab-sandbox.render.com/execute">
+        </div>
+        <div class="setting-group">
+          <div>
+            <strong>Theme</strong>
+            <p>CodeLab Dark (Default)</p>
+          </div>
+          <span class="lang-status status-available">Active</span>
+        </div>
+        <div class="setting-group">
+          <div>
+            <strong>Storage Usage</strong>
+            <p>Browser Local Storage</p>
+          </div>
+          <button class="btn btn-danger btn-sm" id="btn-clear-storage">Clear Local Data</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>V1 Specifications & V2 Roadmap</h4>
+        <p>• Language logos hosted locally in <code>/logos/</code>.<br>
+           • Secure code execution on Render environment.<br>
+           • <strong>Planned for V2:</strong> Vision AI for parsing screenshot code & errors.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Nav -->
+  <nav>
+    <button class="nav-btn active" data-target="sec-learn">
+      <i class="fa-solid fa-book-open"></i>
+      <span>Learn</span>
+    </button>
+    <button class="nav-btn" data-target="sec-code">
+      <i class="fa-solid fa-code"></i>
+      <span>Code</span>
+    </button>
+    <button class="nav-btn" data-target="sec-projects">
+      <i class="fa-solid fa-folder-open"></i>
+      <span>Projects</span>
+    </button>
+    <button class="nav-btn" data-target="sec-settings">
+      <i class="fa-solid fa-gear"></i>
+      <span>Settings</span>
+    </button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
