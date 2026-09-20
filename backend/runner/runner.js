@@ -1,17 +1,29 @@
-function runCode(language, code, input = "") {
-    const supportedLanguages = [
-        "python",
-        "javascript",
-        "java",
-        "c",
-        "cpp",
-        "go",
-        "rust",
-        "ruby",
-        "php"
-    ];
+const { execute } = require("./execute");
 
-    if (!supportedLanguages.includes(language)) {
+const runners = {
+    python: {
+        command: "python3",
+        args: (file) => [file]
+    },
+
+    javascript: {
+        command: "node",
+        args: (file) => [file]
+    },
+
+    ruby: {
+        command: "ruby",
+        args: (file) => [file]
+    },
+
+    php: {
+        command: "php",
+        args: (file) => [file]
+    }
+};
+
+async function runCode(language, code, input = "") {
+    if (!runners[language]) {
         return {
             success: false,
             output: "",
@@ -22,7 +34,7 @@ function runCode(language, code, input = "") {
     return {
         success: false,
         output: "",
-        error: "Runner is not connected yet"
+        error: "Language runner setup is not finished yet"
     };
 }
 
