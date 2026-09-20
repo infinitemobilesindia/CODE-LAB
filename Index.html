@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0,
+      maximum-scale=1.0,user-scalable=no">
+
+<meta name="theme-color" content="#080b10">
 
 <title>CodeLab</title>
-
-<meta name="theme-color" content="#070a10">
 
 <style>
 *{
@@ -17,58 +19,44 @@
     -webkit-tap-highlight-color:transparent;
 }
 
-:root{
-    --bg:#06080d;
-    --panel:#0c1018;
-    --panel2:#111722;
-    --border:#1b2432;
-    --text:#f5f7fb;
-    --muted:#7d8798;
-    --blue:#1683ff;
-    --blue2:#0d5ed7;
-    --red:#ff4d5e;
-    --green:#29d98b;
-}
-
 body{
     font-family:Inter,Arial,sans-serif;
-    background:#000;
-    color:var(--text);
+    background:#07090d;
+    color:#f5f7fa;
     min-height:100vh;
 }
 
-button,input,textarea,select{
+button,
+input,
+textarea,
+select{
     font:inherit;
 }
 
 button{
     cursor:pointer;
-    border:0;
 }
 
 .app{
     width:100%;
-    max-width:520px;
+    max-width:600px;
     min-height:100vh;
     margin:auto;
-    background:var(--bg);
+    background:#0b0f15;
     position:relative;
     overflow:hidden;
 }
 
-/* HEADER */
+/* TOP BAR */
 
-.header{
-    height:68px;
-    padding:0 18px;
+.topbar{
+    height:70px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    border-bottom:1px solid var(--border);
-    background:rgba(6,8,13,.96);
-    position:sticky;
-    top:0;
-    z-index:20;
+    padding:0 20px;
+    border-bottom:1px solid #1c2530;
+    background:#0b0f15;
 }
 
 .brand{
@@ -77,473 +65,546 @@ button{
     gap:11px;
 }
 
-.brand-mark{
+.brand-icon{
     width:39px;
     height:39px;
     border-radius:12px;
-    background:linear-gradient(145deg,#1683ff,#07377d);
-    display:grid;
-    place-items:center;
-    box-shadow:0 0 22px rgba(22,131,255,.28);
+    background:linear-gradient(145deg,#168cff,#0754b8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
+    font-weight:900;
+    box-shadow:0 0 20px rgba(0,130,255,.22);
 }
 
-.brand-mark svg{
-    width:23px;
-    height:23px;
-}
-
-.brand-name{
-    font-size:19px;
+.brand-text{
+    font-size:20px;
     font-weight:800;
-    letter-spacing:.3px;
+    letter-spacing:-.5px;
 }
 
-.header-action{
-    width:40px;
-    height:40px;
-    border-radius:12px;
-    background:#101620;
-    border:1px solid var(--border);
-    color:#cbd3df;
-    display:grid;
-    place-items:center;
-}
-
-.header-action svg{
-    width:19px;
+.status{
+    width:9px;
+    height:9px;
+    background:#31e981;
+    border-radius:50%;
+    box-shadow:0 0 10px #31e981;
 }
 
 /* SCREENS */
 
 .screen{
     display:none;
-    padding:20px 17px 100px;
+    padding:20px;
+    padding-bottom:100px;
+    min-height:calc(100vh - 70px);
 }
 
 .screen.active{
     display:block;
 }
 
-.title{
-    font-size:27px;
-    font-weight:800;
-    margin-bottom:6px;
-}
-
-.subtitle{
-    color:var(--muted);
-    font-size:14px;
-    margin-bottom:22px;
-}
-
 /* HOME */
 
-.continue{
+.greeting{
+    margin-top:10px;
+}
+
+.greeting small{
+    color:#7f8b99;
+    font-size:13px;
+}
+
+.greeting h1{
+    font-size:29px;
+    margin-top:5px;
+}
+
+.hero{
+    margin-top:22px;
+    padding:22px;
+    border:1px solid #1c5e9b;
+    border-radius:22px;
     background:
-        radial-gradient(circle at 90% 10%,rgba(22,131,255,.25),transparent 35%),
-        linear-gradient(135deg,#101a29,#0b111b);
-    border:1px solid #1b3557;
-    border-radius:19px;
-    padding:20px;
-    margin-bottom:22px;
+      radial-gradient(circle at 90% 0%,rgba(0,129,255,.22),transparent 45%),
+      #101823;
 }
 
-.continue-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
-}
-
-.continue-label{
+.hero-label{
+    color:#54aaff;
     font-size:12px;
-    color:#6daeff;
+    font-weight:700;
     text-transform:uppercase;
     letter-spacing:1px;
-    font-weight:700;
 }
 
-.percent{
-    font-size:12px;
-    color:#aab5c6;
+.hero h2{
+    margin-top:8px;
+    font-size:21px;
 }
 
-.continue h2{
-    font-size:20px;
-    margin-bottom:7px;
-}
-
-.continue p{
-    color:var(--muted);
+.hero p{
+    color:#8995a4;
+    margin-top:8px;
     font-size:13px;
-    margin-bottom:17px;
+    line-height:1.5;
 }
 
 .progress{
-    height:6px;
-    background:#17202d;
+    height:7px;
+    background:#202a35;
     border-radius:10px;
+    margin-top:18px;
     overflow:hidden;
-    margin-bottom:16px;
 }
 
 .progress span{
     display:block;
     width:42%;
     height:100%;
-    background:var(--blue);
+    background:#168cff;
     border-radius:10px;
 }
 
-.primary{
-    background:var(--blue);
+.hero-btn{
+    margin-top:17px;
+    border:0;
+    padding:12px 18px;
+    border-radius:12px;
     color:white;
-    padding:11px 17px;
-    border-radius:11px;
+    background:#087cf0;
     font-weight:700;
 }
 
+/* SECTION HEAD */
+
 .section-head{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    margin:24px 0 13px;
+    align-items:center;
+    margin:25px 0 12px;
 }
 
-.section-head h3{
-    font-size:16px;
+.section-head h2{
+    font-size:17px;
 }
 
 .section-head button{
     background:none;
-    color:#5ea9ff;
-    font-size:12px;
+    border:0;
+    color:#429eff;
+    font-size:13px;
 }
 
-.cards{
-    display:grid;
-    gap:10px;
-}
-
-.card{
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:15px;
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.card-icon{
-    width:43px;
-    height:43px;
-    border-radius:12px;
-    background:#111a27;
-    color:#4ea4ff;
-    display:grid;
-    place-items:center;
-    flex-shrink:0;
-}
-
-.card-icon svg{
-    width:22px;
-    height:22px;
-}
-
-.card-info{
-    min-width:0;
-    flex:1;
-}
-
-.card-info h4{
-    font-size:14px;
-    margin-bottom:4px;
-}
-
-.card-info p{
-    color:var(--muted);
-    font-size:11px;
-}
-
-.arrow{
-    color:#687487;
-}
-
-/* LANGUAGES */
+/* LANGUAGE CARDS */
 
 .languages{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.language{
-    background:var(--panel);
-    border:1px solid var(--border);
-    padding:14px;
-    border-radius:15px;
-    display:flex;
-    align-items:center;
+    grid-template-columns:repeat(2,1fr);
     gap:11px;
 }
 
-.lang-logo{
-    width:34px;
-    height:34px;
-    border-radius:9px;
-    background:#111722;
-    display:grid;
-    place-items:center;
-    font-size:13px;
-    font-weight:800;
-    color:#66adff;
-}
-
-.language span{
-    font-size:13px;
-    font-weight:600;
-}
-
-/* CODE */
-
-.code-toolbar{
+.language-card{
+    border:1px solid #1d2630;
+    background:#10151c;
+    border-radius:16px;
+    padding:14px;
     display:flex;
-    gap:7px;
-    margin-bottom:13px;
-}
-
-.tool{
-    flex:1;
-    background:#101620;
-    border:1px solid var(--border);
-    color:#c8d0dc;
-    padding:10px 8px;
-    border-radius:10px;
-    display:flex;
-    justify-content:center;
     align-items:center;
-    gap:6px;
-    font-size:12px;
+    gap:12px;
+    transition:.2s;
 }
 
-.tool svg{
-    width:16px;
+.language-card:active{
+    transform:scale(.97);
+    border-color:#168cff;
 }
 
-.tool.run{
-    background:var(--blue);
-    border-color:var(--blue);
-    color:white;
+.language-logo{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    border-radius:10px;
+    background:#05070a;
 }
 
-.language-bar{
+.language-info b{
+    display:block;
+    font-size:14px;
+}
+
+.language-info span{
+    color:#687584;
+    font-size:11px;
+}
+
+/* RECENT */
+
+.project-mini{
+    background:#10151c;
+    border:1px solid #1d2630;
+    padding:15px;
+    border-radius:16px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    background:#0b1018;
-    border:1px solid var(--border);
-    padding:11px 13px;
-    border-radius:12px 12px 0 0;
-}
-
-.detected{
-    color:#6faeff;
-    font-size:12px;
-}
-
-select{
-    background:#121923;
-    color:#dce3ed;
-    border:1px solid #263140;
-    padding:7px 9px;
-    border-radius:8px;
-    outline:none;
-}
-
-.editor-wrap{
-    display:flex;
-    background:#090d13;
-    border:1px solid var(--border);
-    border-top:0;
-    min-height:280px;
-    overflow:auto;
-}
-
-.lines{
-    width:43px;
-    padding:15px 9px;
-    text-align:right;
-    color:#455062;
-    font:13px/1.7 monospace;
-    user-select:none;
-}
-
-textarea{
-    flex:1;
-    resize:none;
-    min-height:280px;
-    padding:15px 10px;
-    background:transparent;
-    color:#dce5f2;
-    border:0;
-    outline:none;
-    font:13px/1.7 monospace;
-    white-space:pre;
-}
-
-.output{
-    margin-top:15px;
-}
-
-.output-title{
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:8px;
-}
-
-.output-box{
-    background:#080c12;
-    border:1px solid var(--border);
-    border-radius:13px;
-    min-height:90px;
-    padding:13px;
-    color:#aeb9c9;
-    font:12px/1.6 monospace;
-    white-space:pre-wrap;
-}
-
-.output-box.success{
-    color:#8de8bd;
-}
-
-.output-box.error{
-    color:#ff7b88;
-    border-color:#51202a;
-    background:#150a0e;
-}
-
-/* PROJECTS */
-
-.search{
-    width:100%;
-    background:#0d121a;
-    border:1px solid var(--border);
-    color:white;
-    padding:12px 14px;
-    border-radius:12px;
-    outline:none;
-    margin-bottom:15px;
-}
-
-.project{
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:15px;
     margin-bottom:10px;
 }
 
-.project-top{
+.project-left{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
 .project-icon{
-    width:42px;
-    height:42px;
+    width:40px;
+    height:40px;
     border-radius:11px;
-    background:#101c2b;
-    color:#4da4ff;
-    display:grid;
-    place-items:center;
+    background:#111d2b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#36a0ff;
+    font-weight:900;
 }
 
-.project-icon svg{
-    width:22px;
+.project-mini small{
+    color:#687584;
 }
 
-.project-main{
+.open-btn{
+    border:1px solid #273544;
+    background:#121922;
+    color:#c9d2dc;
+    padding:8px 11px;
+    border-radius:9px;
+    font-size:12px;
+}
+
+/* CODE SCREEN */
+
+.code-toolbar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:13px;
+}
+
+.tool-btn{
+    border:1px solid #25303c;
+    background:#111720;
+    color:#dce4ed;
+    padding:9px 12px;
+    border-radius:10px;
+    font-size:12px;
+}
+
+.run-btn{
+    margin-left:auto;
+    background:#1387f5;
+    border-color:#1387f5;
+    color:white;
+    font-weight:700;
+}
+
+.language-select{
+    width:100%;
+    background:#111720;
+    color:white;
+    border:1px solid #273340;
+    border-radius:12px;
+    padding:13px;
+    outline:none;
+    margin-bottom:13px;
+}
+
+.editor{
+    border:1px solid #273340;
+    background:#080b0f;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.editor-head{
+    height:40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 13px;
+    border-bottom:1px solid #202934;
+    color:#7e8a98;
+    font-size:12px;
+}
+
+.editor-area{
+    display:flex;
+    min-height:280px;
+}
+
+.line-numbers{
+    width:43px;
+    padding:13px 8px;
+    text-align:right;
+    color:#46515e;
+    background:#080b0f;
+    font-family:monospace;
+    font-size:13px;
+    line-height:1.6;
+    user-select:none;
+}
+
+#codeEditor{
     flex:1;
+    resize:none;
+    border:0;
+    outline:none;
+    background:#080b0f;
+    color:#e7edf5;
+    padding:13px 10px;
+    font-family:monospace;
+    font-size:13px;
+    line-height:1.6;
+    min-height:280px;
+    white-space:pre;
+    overflow:auto;
 }
 
-.project-main h4{
-    font-size:14px;
+/* OUTPUT */
+
+.output{
+    margin-top:15px;
+    border:1px solid #202b36;
+    background:#0d1218;
+    border-radius:15px;
+    overflow:hidden;
 }
 
-.project-main p{
-    color:var(--muted);
+.output-head{
+    padding:12px 14px;
+    border-bottom:1px solid #202b36;
+    display:flex;
+    justify-content:space-between;
+    color:#aab6c3;
+    font-size:13px;
+}
+
+#outputBox{
+    padding:14px;
+    min-height:75px;
+    color:#8ee6ad;
+    font-family:monospace;
+    font-size:12px;
+    white-space:pre-wrap;
+}
+
+/* ERROR */
+
+.error-card{
+    display:none;
+    margin-top:13px;
+    border:1px solid #712d35;
+    background:#241217;
+    border-radius:15px;
+    padding:15px;
+}
+
+.error-card.show{
+    display:block;
+}
+
+.error-title{
+    color:#ff6977;
+    font-weight:800;
+}
+
+.error-details{
+    color:#c58c94;
+    margin-top:7px;
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* AI TUTOR */
+
+.tutor{
+    display:none;
+    margin-top:13px;
+    border:1px solid #304c68;
+    background:#0d1722;
+    border-radius:16px;
+    padding:16px;
+}
+
+.tutor.show{
+    display:block;
+}
+
+.tutor-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.tutor-icon{
+    width:37px;
+    height:37px;
+    border-radius:12px;
+    background:linear-gradient(145deg,#267fff,#693cff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+}
+
+.tutor-title{
+    font-weight:800;
+}
+
+.tutor-sub{
+    color:#718194;
     font-size:11px;
-    margin-top:4px;
+    margin-top:2px;
+}
+
+.tutor-text{
+    color:#bdc8d4;
+    font-size:13px;
+    line-height:1.55;
+    margin-top:13px;
+}
+
+.tutor-code{
+    margin-top:10px;
+    padding:10px;
+    border-radius:10px;
+    background:#080b0f;
+    color:#71baff;
+    font-family:monospace;
+    font-size:12px;
+    white-space:pre-wrap;
+}
+
+/* PROJECTS */
+
+.search{
+    width:100%;
+    padding:14px;
+    border-radius:13px;
+    background:#10151c;
+    border:1px solid #27313d;
+    color:white;
+    outline:none;
+    margin:14px 0;
+}
+
+.project-card{
+    padding:16px;
+    background:#10151c;
+    border:1px solid #1e2934;
+    border-radius:16px;
+    margin-bottom:11px;
+}
+
+.project-card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.project-card h3{
+    font-size:15px;
+}
+
+.project-card small{
+    color:#667383;
 }
 
 .project-actions{
     display:flex;
-    gap:6px;
-    margin-top:12px;
+    gap:8px;
+    margin-top:13px;
 }
 
-.small-btn{
-    padding:7px 10px;
-    border-radius:8px;
-    background:#151d28;
-    color:#bfc9d8;
-    font-size:11px;
+.project-actions button{
+    flex:1;
+    padding:9px;
+    border-radius:9px;
+    border:1px solid #283543;
+    background:#111820;
+    color:#cbd4de;
+    font-size:12px;
 }
 
-.small-btn.delete{
-    color:#ff7782;
+.project-actions .delete{
+    color:#ff6e78;
 }
 
 /* SETTINGS */
 
-.setting{
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:15px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.setting-group{
+    margin-top:20px;
+}
+
+.setting-group h3{
+    color:#718091;
+    text-transform:uppercase;
+    font-size:11px;
+    letter-spacing:1px;
     margin-bottom:9px;
 }
 
-.setting-info h4{
-    font-size:14px;
-    margin-bottom:4px;
+.setting{
+    background:#10151c;
+    border:1px solid #1e2934;
+    padding:16px;
+    border-radius:14px;
+    margin-bottom:9px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-.setting-info p{
-    color:var(--muted);
-    font-size:11px;
+.setting-info b{
+    font-size:14px;
 }
+
+.setting-info span{
+    display:block;
+    color:#697685;
+    font-size:11px;
+    margin-top:4px;
+}
+
+/* SWITCH */
 
 .switch{
     width:43px;
     height:24px;
-    background:#202936;
+    background:#26313d;
     border-radius:20px;
-    padding:3px;
-    transition:.2s;
+    position:relative;
 }
 
-.switch span{
-    display:block;
+.switch.active{
+    background:#168cff;
+}
+
+.switch::after{
+    content:"";
     width:18px;
     height:18px;
-    background:#8994a4;
+    position:absolute;
+    top:3px;
+    left:3px;
     border-radius:50%;
+    background:white;
     transition:.2s;
 }
 
-.switch.on{
-    background:var(--blue);
-}
-
-.switch.on span{
-    transform:translateX(19px);
-    background:white;
+.switch.active::after{
+    left:22px;
 }
 
 /* BOTTOM NAV */
@@ -554,82 +615,99 @@ textarea{
     left:50%;
     transform:translateX(-50%);
     width:100%;
-    max-width:520px;
-    height:72px;
-    background:rgba(8,11,17,.97);
-    border-top:1px solid var(--border);
+    max-width:600px;
+    height:75px;
+    background:rgba(10,14,19,.97);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #1e2832;
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    z-index:30;
+    z-index:50;
 }
 
 .nav-btn{
+    border:0;
     background:none;
-    color:#596576;
+    color:#637181;
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     gap:5px;
-    font-size:10px;
 }
 
-.nav-btn svg{
-    width:21px;
-    height:21px;
+.nav-icon{
+    width:25px;
+    height:25px;
+    border:1.8px solid currentColor;
+    border-radius:7px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:11px;
+    font-weight:900;
 }
 
 .nav-btn.active{
-    color:#4da4ff;
+    color:#3d9dff;
+}
+
+.nav-text{
+    font-size:10px;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    color:#687686;
+    padding:40px 15px;
+    font-size:13px;
 }
 
 /* TOAST */
 
 .toast{
     position:fixed;
+    bottom:88px;
     left:50%;
-    bottom:87px;
-    transform:translateX(-50%) translateY(15px);
-    background:#151d29;
-    border:1px solid #283546;
-    color:#e7edf5;
-    padding:11px 15px;
-    border-radius:10px;
-    font-size:12px;
+    transform:translate(-50%,20px);
+    background:#151d26;
+    border:1px solid #304050;
+    color:#dbe5ef;
+    padding:11px 16px;
+    border-radius:12px;
     opacity:0;
     pointer-events:none;
     transition:.25s;
-    z-index:50;
-    white-space:nowrap;
+    z-index:100;
+    font-size:12px;
 }
 
 .toast.show{
     opacity:1;
-    transform:translateX(-50%) translateY(0);
+    transform:translate(-50%,0);
 }
 
 /* DESKTOP */
 
 @media(min-width:700px){
     body{
-        padding:25px;
+        padding:20px;
+        background:#05070a;
     }
 
     .app{
-        min-height:850px;
-        border:1px solid #182231;
-        border-radius:24px;
-        box-shadow:0 30px 80px rgba(0,0,0,.5);
+        border:1px solid #1c2631;
+        border-radius:25px;
+        min-height:calc(100vh - 40px);
     }
 
     .bottom-nav{
-        position:absolute;
-        bottom:0;
-        border-radius:0 0 24px 24px;
-    }
-
-    .header{
-        border-radius:24px 24px 0 0;
+        bottom:20px;
+        border:1px solid #1e2832;
+        border-radius:18px;
+        width:calc(100% - 40px);
     }
 }
 </style>
@@ -639,119 +717,204 @@ textarea{
 
 <div class="app">
 
-<!-- HEADER -->
+<!-- TOP -->
 
-<header class="header">
+<header class="topbar">
     <div class="brand">
-        <div class="brand-mark">
-            <!-- CUSTOM CODELAB LOGO -->
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M8.5 6L3 12l5.5 6"
-                      stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-                <path d="M15.5 6L21 12l-5.5 6"
-                      stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-                <path d="M13.5 4.5L10.5 19.5"
-                      stroke="#9bcaff"
-                      stroke-width="2"
-                      stroke-linecap="round"/>
-            </svg>
-        </div>
-        <div class="brand-name">CodeLab</div>
+        <div class="brand-icon">&lt;/&gt;</div>
+        <div class="brand-text">CodeLab</div>
     </div>
 
-    <button class="header-action" onclick="showScreen('settings')">
-        <svg viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="3"
-                    stroke="currentColor" stroke-width="1.8"/>
-            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 1.7-.06-.06a1.7 1.7 0 0 0-1.88-.34
-                     1.7 1.7 0 0 0-1.03 1.56V20h-2.4v-.2a1.7 1.7 0 0 0-1.03-1.56
-                     1.7 1.7 0 0 0-1.88.34l-.06.06-1.7-1.7.06-.06A1.7 1.7 0 0 0 8.46 15
-                     1.7 1.7 0 0 0 6.9 14H6.7v-2.4h.2a1.7 1.7 0 0 0 1.56-1.03
-                     1.7 1.7 0 0 0-.34-1.88l-.06-.06 1.7-1.7.06.06a1.7 1.7 0 0 0 1.88.34
-                     1.7 1.7 0 0 0 1.03-1.56V5.6h2.4v.17a1.7 1.7 0 0 0 1.03 1.56
-                     1.7 1.7 0 0 0 1.88-.34l.06-.06 1.7 1.7-.06.06a1.7 1.7 0 0 0-.34 1.88
-                     1.7 1.7 0 0 0 1.56 1.03h.2V14h-.2A1.7 1.7 0 0 0 19.4 15Z"
-                  stroke="currentColor"
-                  stroke-width="1.4"/>
-        </svg>
-    </button>
+    <div class="status"></div>
 </header>
 
 
-<!-- HOME -->
+<!-- ================= HOME ================= -->
 
-<section id="home" class="screen active">
+<section id="homeScreen" class="screen active">
 
-    <h1 class="title">Welcome back</h1>
-    <p class="subtitle">Build. Experiment. Innovate.</p>
+    <div class="greeting">
+        <small>WELCOME BACK</small>
+        <h1>Keep building.</h1>
+    </div>
 
-    <div class="continue">
+    <div class="hero">
 
-        <div class="continue-top">
-            <span class="continue-label">Continue learning</span>
-            <span class="percent">42%</span>
-        </div>
+        <div class="hero-label">Continue learning</div>
 
         <h2>Python Fundamentals</h2>
-        <p>Learn the basics of programming one step at a time.</p>
+
+        <p>
+            Learn variables, conditions, loops and functions
+            by writing real code.
+        </p>
 
         <div class="progress">
             <span></span>
         </div>
 
-        <button class="primary"
-                onclick="showScreen('code')">
+        <button class="hero-btn"
+                onclick="openLearn()">
             Continue
+        </button>
+
+    </div>
+
+
+    <div class="section-head">
+        <h2>Recent Projects</h2>
+
+        <button onclick="showScreen('projects')">
+            View all
         </button>
     </div>
 
-    <div class="section-head">
-        <h3>Recent Projects</h3>
-        <button onclick="showScreen('projects')">View all</button>
-    </div>
+    <div id="homeProjects"></div>
 
-    <div class="cards" id="recentProjects"></div>
 
     <div class="section-head">
-        <h3>Languages</h3>
+        <h2>Languages</h2>
     </div>
 
     <div class="languages">
 
-        <div class="language">
-            <div class="lang-logo">Py</div>
-            <span>Python</span>
+        <div class="language-card"
+             onclick="selectLanguage('Python')">
+
+            <img class="language-logo"
+                 src="logos/Python.png">
+
+            <div class="language-info">
+                <b>Python</b>
+                <span>Beginner friendly</span>
+            </div>
+
         </div>
 
-        <div class="language">
-            <div class="lang-logo">JS</div>
-            <span>JavaScript</span>
+
+        <div class="language-card"
+             onclick="selectLanguage('JavaScript')">
+
+            <img class="language-logo"
+                 src="logos/JavaScript.png">
+
+            <div class="language-info">
+                <b>JavaScript</b>
+                <span>Web development</span>
+            </div>
+
         </div>
 
-        <div class="language">
-            <div class="lang-logo">C</div>
-            <span>C / C++</span>
+
+        <div class="language-card"
+             onclick="selectLanguage('Java')">
+
+            <img class="language-logo"
+                 src="logos/Java.png">
+
+            <div class="language-info">
+                <b>Java</b>
+                <span>Applications</span>
+            </div>
+
         </div>
 
-        <div class="language">
-            <div class="lang-logo">J</div>
-            <span>Java</span>
+
+        <div class="language-card"
+             onclick="selectLanguage('C')">
+
+            <img class="language-logo"
+                 src="logos/C.png">
+
+            <div class="language-info">
+                <b>C</b>
+                <span>System programming</span>
+            </div>
+
         </div>
 
-        <div class="language">
-            <div class="lang-logo">Go</div>
-            <span>Go</span>
+
+        <div class="language-card"
+             onclick="selectLanguage('C++')">
+
+            <img class="language-logo"
+                 src="logos/C++ (CPlusPlus).png">
+
+            <div class="language-info">
+                <b>C++</b>
+                <span>High performance</span>
+            </div>
+
         </div>
 
-        <div class="language">
-            <div class="lang-logo">Rs</div>
-            <span>Rust</span>
+
+        <div class="language-card"
+             onclick="selectLanguage('Go')">
+
+            <img class="language-logo"
+                 src="logos/Go.png">
+
+            <div class="language-info">
+                <b>Go</b>
+                <span>Backend systems</span>
+            </div>
+
+        </div>
+
+
+        <div class="language-card"
+             onclick="selectLanguage('Rust')">
+
+            <img class="language-logo"
+                 src="logos/Rust.png">
+
+            <div class="language-info">
+                <b>Rust</b>
+                <span>Safe systems</span>
+            </div>
+
+        </div>
+
+
+        <div class="language-card"
+             onclick="selectLanguage('Kotlin')">
+
+            <img class="language-logo"
+                 src="logos/Kotlin.png">
+
+            <div class="language-info">
+                <b>Kotlin</b>
+                <span>Android & JVM</span>
+            </div>
+
+        </div>
+
+
+        <div class="language-card"
+             onclick="selectLanguage('PHP')">
+
+            <img class="language-logo"
+                 src="logos/PHP.png">
+
+            <div class="language-info">
+                <b>PHP</b>
+                <span>Web backend</span>
+            </div>
+
+        </div>
+
+
+        <div class="language-card"
+             onclick="selectLanguage('HTML5')">
+
+            <img class="language-logo"
+                 src="logos/HTML5.png">
+
+            <div class="language-info">
+                <b>HTML</b>
+                <span>Web structure</span>
+            </div>
+
         </div>
 
     </div>
@@ -759,99 +922,150 @@ textarea{
 </section>
 
 
-<!-- CODE -->
 
-<section id="code" class="screen">
+<!-- ================= CODE ================= -->
 
-    <h1 class="title">Code</h1>
-    <p class="subtitle">Write and run your programs.</p>
+<section id="codeScreen" class="screen">
+
+    <div class="section-head">
+        <h2>Code</h2>
+    </div>
 
     <div class="code-toolbar">
 
-        <button class="tool"
+        <button class="tool-btn"
                 onclick="newCode()">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 3h10l4 4v14H5z"
-                      stroke="currentColor"
-                      stroke-width="1.7"/>
-                <path d="M14 3v5h5M12 12v6M9 15h6"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"/>
-            </svg>
             New
         </button>
 
-        <button class="tool"
+        <button class="tool-btn"
                 onclick="saveProject()">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 4h12l3 3v13H5z"
-                      stroke="currentColor"
-                      stroke-width="1.7"/>
-                <path d="M8 4v6h8V4M8 20v-6h8v6"
-                      stroke="currentColor"
-                      stroke-width="1.7"/>
-            </svg>
             Save
         </button>
 
-        <button class="tool run"
+        <button class="tool-btn"
+                onclick="clearOutput()">
+            Clear
+        </button>
+
+        <button class="tool-btn run-btn"
                 onclick="runCode()">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M8 5l11 7-11 7V5Z"
-                      fill="currentColor"/>
-            </svg>
             Run
         </button>
 
     </div>
 
-    <div class="language-bar">
 
-        <span class="detected" id="detected">
-            Language: JavaScript
-        </span>
+    <select id="languageSelect"
+            class="language-select"
+            onchange="languageChanged()">
 
-        <select id="language"
-                onchange="updateLanguage()">
+        <option>Python</option>
+        <option>JavaScript</option>
+        <option>Java</option>
+        <option>C</option>
+        <option>C++</option>
+        <option>Go</option>
+        <option>Rust</option>
+        <option>Kotlin</option>
+        <option>PHP</option>
+        <option>HTML5</option>
 
-            <option value="javascript">JavaScript</option>
-            <option value="python">Python</option>
-            <option value="java">Java</option>
-            <option value="cpp">C++</option>
-            <option value="c">C</option>
-            <option value="go">Go</option>
-            <option value="rust">Rust</option>
-            <option value="ruby">Ruby</option>
-            <option value="php">PHP</option>
-            <option value="kotlin">Kotlin</option>
+    </select>
 
-        </select>
+
+    <div class="editor">
+
+        <div class="editor-head">
+
+            <span id="detectedText">
+                Language detected: Python
+            </span>
+
+            <span>
+                CodeLab Editor
+            </span>
+
+        </div>
+
+
+        <div class="editor-area">
+
+            <div id="lineNumbers"
+                 class="line-numbers">
+                1
+            </div>
+
+            <textarea
+                id="codeEditor"
+                spellcheck="false"
+                oninput="updateLines();autoDetect();"
+                onscroll="syncScroll();">print("Hello from CodeLab!")</textarea>
+
+        </div>
 
     </div>
 
-    <div class="editor-wrap">
-
-        <div class="lines" id="lines">1</div>
-
-        <textarea
-            id="editor"
-            spellcheck="false"
-            oninput="updateLines();autoDetect()"
-            onscroll="syncScroll()"
-        >console.log("Hello from CodeLab!");</textarea>
-
-    </div>
 
     <div class="output">
 
-        <div class="output-title">
-            Output
+        <div class="output-head">
+            <span>Output</span>
+            <span id="runStatus">Ready</span>
         </div>
 
-        <div id="output"
-             class="output-box">
-            Press Run to execute your code.
+        <div id="outputBox">
+No output yet.
+        </div>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div id="errorCard"
+         class="error-card">
+
+        <div class="error-title">
+            Code Error
+        </div>
+
+        <div id="errorDetails"
+             class="error-details">
+        </div>
+
+    </div>
+
+
+    <!-- AI TUTOR -->
+
+    <div id="tutor"
+         class="tutor">
+
+        <div class="tutor-top">
+
+            <div class="tutor-icon">
+                AI
+            </div>
+
+            <div>
+                <div class="tutor-title">
+                    CodeLab Tutor
+                </div>
+
+                <div class="tutor-sub">
+                    Understand the problem
+                </div>
+            </div>
+
+        </div>
+
+        <div id="tutorText"
+             class="tutor-text">
+        </div>
+
+        <div id="tutorCode"
+             class="tutor-code">
         </div>
 
     </div>
@@ -859,171 +1073,105 @@ textarea{
 </section>
 
 
-<!-- PROJECTS -->
 
-<section id="projects" class="screen">
+<!-- ================= PROJECTS ================= -->
 
-    <h1 class="title">Projects</h1>
-    <p class="subtitle">Your saved coding projects.</p>
-
-    <input
-        class="search"
-        id="projectSearch"
-        placeholder="Search projects..."
-        oninput="renderProjects()"
-    >
-
-    <div id="projectList"></div>
-
-</section>
-
-
-<!-- SETTINGS -->
-
-<section id="settings" class="screen">
-
-    <h1 class="title">Settings</h1>
-    <p class="subtitle">Customize your CodeLab experience.</p>
-
-    <div class="setting">
-
-        <div class="setting-info">
-            <h4>Auto Detect Language</h4>
-            <p>Detect the language from your code.</p>
-        </div>
-
-        <div class="switch on"
-             onclick="toggleSwitch(this)">
-            <span></span>
-        </div>
-
-    </div>
-
-    <div class="setting">
-
-        <div class="setting-info">
-            <h4>Auto Save</h4>
-            <p>Automatically save your current project.</p>
-        </div>
-
-        <div class="switch"
-             onclick="toggleSwitch(this)">
-            <span></span>
-        </div>
-
-    </div>
-
-    <div class="setting">
-
-        <div class="setting-info">
-            <h4>Dark Interface</h4>
-            <p>Use the CodeLab dark interface.</p>
-        </div>
-
-        <div class="switch on"
-             onclick="toggleSwitch(this)">
-            <span></span>
-        </div>
-
-    </div>
+<section id="projectsScreen" class="screen">
 
     <div class="section-head">
-        <h3>About</h3>
+        <h2>Projects</h2>
+
+        <button onclick="newCode()">
+            + New
+        </button>
     </div>
 
-    <div class="card">
 
-        <div class="card-icon">
+    <input
+        id="projectSearch"
+        class="search"
+        placeholder="Search projects..."
+        oninput="renderProjects()">
 
-            <svg viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="9"
-                        stroke="currentColor"
-                        stroke-width="1.7"/>
-                <path d="M12 10v6M12 7h.01"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"/>
-            </svg>
 
-        </div>
-
-        <div class="card-info">
-            <h4>CodeLab</h4>
-            <p>Experiment. Develop. Innovate.</p>
-        </div>
-
-    </div>
+    <div id="projectsList"></div>
 
 </section>
 
 
-<!-- BOTTOM NAV -->
 
-<nav class="bottom-nav">
+<!-- ================= SETTINGS ================= -->
 
-    <button class="nav-btn active"
-            data-screen="home"
-            onclick="showScreen('home')">
+<section id="settingsScreen" class="screen">
 
-        <!-- CUSTOM HOME ICON -->
-
-        <svg viewBox="0 0 24 24" fill="none">
-            <rect x="4" y="4" width="6" height="6"
-                  rx="1.3"
-                  stroke="currentColor"
-                  stroke-width="1.7"/>
-            <rect x="14" y="4" width="6" height="6"
-                  rx="1.3"
-                  stroke="currentColor"
-                  stroke-width="1.7"/>
-            <rect x="4" y="14" width="6" height="6"
-                  rx="1.3"
-                  stroke="currentColor"
-                  stroke-width="1.7"/>
-            <rect x="14" y="14" width="6" height="6"
-                  rx="1.3"
-                  stroke="currentColor"
-                  stroke-width="1.7"/>
-        </svg>
-
-        Home
-    </button>
+    <div class="section-head">
+        <h2>Settings</h2>
+    </div>
 
 
-    <button class="nav-btn"
-            data-screen="code"
-            onclick="showScreen('code')">
+    <div class="setting-group">
 
-        <!-- CUSTOM CODE ICON -->
+        <h3>Editor</h3>
 
-        <svg viewBox="0 0 24 24" fill="none">
-            <path d="M8.5 6L3 12l5.5 6"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"/>
-            <path d="M15.5 6L21 12l-5.5 6"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"/>
-            <path d="M13.5 4.5L10.5 19.5"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"/>
-        </svg>
+        <div class="setting">
 
-        Code
-    </button>
+            <div class="setting-info">
+                <b>Auto Detect Language</b>
+                <span>
+                    Detect the language from your code.
+                </span>
+            </div>
+
+            <div id="autoSwitch"
+                 class="switch active"
+                 onclick="toggleSetting(this)">
+            </div>
+
+        </div>
 
 
-    <button class="nav-btn"
-            data-screen="projects"
-            onclick="showScreen('projects')">
+        <div class="setting">
 
-        <!-- CUSTOM PROJECT ICON -->
+            <div class="setting-info">
+                <b>Line Numbers</b>
+                <span>
+                    Show line numbers in the editor.
+                </span>
+            </div>
 
-        <svg viewBox="0 0 24 24" fill="none">
-            <path d="M3.5 7.5h6l2 2H20.5v10h-17z"
-                  stroke="currentColor"
-                  stroke-width=
+            <div id="lineSwitch"
+                 class="switch active"
+                 onclick="toggleLines(this)">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="setting-group">
+
+        <h3>Learning</h3>
+
+        <div class="setting">
+
+            <div class="setting-info">
+                <b>CodeLab Tutor</b>
+                <span>
+                    Explain errors and suggest fixes.
+                </span>
+            </div>
+
+            <div id="tutorSwitch"
+                 class="switch active"
+                 onclick="toggleSetting(this)">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="setting-group">
+
+  
