@@ -1,39 +1,40 @@
 const fs = require("fs/promises");
 const os = require("os");
 const path = require("path");
-
 const { execute } = require("./execute");
 
-const runners = {
+const LANGUAGES = {
     python: {
-        command: "python3",
         file: "main.py",
-        args: (file) => [file]
+        command: "python3",
+        args: file => [file]
     },
 
     javascript: {
-        command: "node",
         file: "main.js",
-        args: (file) => [file]
+        command: "node",
+        args: file => [file]
     },
 
     ruby: {
-        command: "ruby",
         file: "main.rb",
-        args: (file) => [file]
+        command: "ruby",
+        args: file => [file]
     },
 
     php: {
-        command: "php",
         file: "main.php",
-        args: (file) => [file]
+        command: "php",
+        args: file => [file]
     }
 };
 
 async function runCode(language, code, input = "") {
-    const runner = runners[language];
+    language = String(language || "").toLowerCase().trim();
 
-    if (!runner) {
+    const config = LANGUAGES[language];
+
+    if (!config) {
         return {
             success: false,
             output: "",
@@ -41,32 +42,62 @@ async function runCode(language, code, input = "") {
         };
     }
 
-    const workspace = await fs.mkdtemp(
-        path.join(os.tmpdir(), "codelab-")
-    );
+    if (typeof code !== "string" || !code.trim()) {
+        return {
+            success: false,
+            output: "",
+            error: "Code is required"
+        };
+    }
 
-    const filePath = path.join(workspace, runner.file);
+    let workspace;
 
     try {
-        await fs.writeFile(filePath, code, "utf8");
+        workspace = await fs.mkdtemp(
+            path.join(os.tmpdir(), "codelab-")
+        );
+
+        const filePath = path.join(
+            workspace,
+            config.file
+        );
+
+        await fs.writeFile(
+            filePath,
+            code,
+            "utf8"
+        );
 
         const result = await execute(
-            runner.command,
-            runner.args(filePath),
+            config.command,
+            config.args(filePath),
             {
                 cwd: workspace,
-                input,
+                input: String(input || ""),
                 timeout: 5000
             }
         );
 
-        return result;
+        return {
+            success: result.success,
+            output: result.output || "",
+            error: result.error || ""
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            output: "",
+            error: error.message || "Execution failed"
+        };
 
     } finally {
-        await fs.rm(workspace, {
-            recursive: true,
-            force: true
-        });
+        if (workspace) {
+            await fs.rm(workspace, {
+                recursive: true,
+                force: true
+            });
+        }
     }
 }
 
