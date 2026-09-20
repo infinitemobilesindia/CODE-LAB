@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { runCode } = require("./runner/runner");
 
 const app = express();
 
@@ -8,7 +9,6 @@ const PORT = process.env.PORT || 10000;
 app.use(cors());
 app.use(express.json({ limit: "100kb" }));
 
-// Home
 app.get("/", (req, res) => {
     res.json({
         name: "CodeLab Backend",
@@ -17,14 +17,12 @@ app.get("/", (req, res) => {
     });
 });
 
-// Health check
 app.get("/health", (req, res) => {
     res.json({
         status: "ok"
     });
 });
 
-// Code execution endpoint
 app.post("/api/run", async (req, res) => {
     const { language, code, input = "" } = req.body;
 
@@ -42,13 +40,23 @@ app.post("/api/run", async (req, res) => {
         });
     }
 
-    // Compiler will be connected here in the next step.
-    res.json({
-        success: false,
-        language: language,
-        output: "",
-        error: "Compiler not connected yet"
-    });
+    try {
+        const result = runCode(
+            language.toLowerCase(),
+            code,
+            input
+        );
+
+        res.json(result);
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            output: "",
+            error: "Backend execution error"
+        });
+    }
 });
 
 app.listen(PORT, "0.0.0.0", () => {
