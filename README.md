@@ -2,7 +2,7 @@
 
 
 # Boot animator 
-Boot animatior also tested in this repo you can download it named V2 in realises Section 
+Boot animatior also tested in this repo you can download it named V2 in realeses Section 
 
 
 # Launcher 
